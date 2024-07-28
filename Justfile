@@ -30,6 +30,7 @@ lint:
 
 # store various dirs and filepaths
 NOTEBOOKS_DIR := justfile_directory() + "/notebooks/"
+IMAGES_DIR := NOTEBOOKS_DIR + "img"
 BUILD_DIR := NOTEBOOKS_DIR + "_build/"
 
 # remove build files
@@ -39,6 +40,7 @@ jupyter-clean:
 # build page
 jupyter-build:
 	jupyter nbconvert --to slides {{NOTEBOOKS_DIR}}*.ipynb --output-dir={{BUILD_DIR}} --execute
+	cp -r {{IMAGES_DIR}} {{BUILD_DIR}}
 
 # render pages
 jupyter-render:
